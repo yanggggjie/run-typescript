@@ -3,16 +3,67 @@
     <id>com.github.yanggggjie.runtypescript</id>
     <name>run-typescript Template</name>
     <vendor>yanggggjie</vendor>
-
     <depends>com.intellij.modules.platform</depends>
+    <depends>JavaScript</depends>
+    <depends>NodeJS</depends>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <!-- template   -->
+    <!--    <resource-bundle>messages.MyBundle</resource-bundle>-->
+    <!--    <extensions defaultExtensionNs="com.intellij">-->
+    <!--        <toolWindow factoryClass="com.github.yanggggjie.runtypescript.toolWindow.MyToolWindowFactory"-->
+    <!--                    id="MyToolWindow"/>-->
+    <!--    </extensions>-->
+    <!--    <applicationListeners>-->
+    <!--        <listener class="com.github.yanggggjie.runtypescript.listeners.MyFrameStateListener"-->
+    <!--                  topic="com.intellij.ide.FrameStateListener"/>-->
+    <!--    </applicationListeners>-->
+    <!-- template   -->
 
-    <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.yanggggjie.runtypescript.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-    </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.yanggggjie.runtypescript.listeners.MyFrameStateListener" topic="com.intellij.ide.FrameStateListener"/>
-    </applicationListeners>
+    <actions>
+        <action
+                id="com.github.yanggggjie.runtypescript.action.RunTsAction"
+                use-shortcut-of="RunDashboard.Run"
+                class="com.github.yanggggjie.runtypescript.action.RunTsAction">
+            <add-to-group
+                    group-id="ProjectViewPopupMenuRunGroup"
+                    anchor="first"/>
+            <add-to-group
+                    group-id="EditorPopupMenu.Run"
+                    anchor="first"/>
+            <add-to-group
+                    group-id="EditorTabPopupMenuEx"
+                    relative-to-action="RunContextPopupGroup"
+                    anchor="before"/>
+        </action>
+        <action id="com.github.yanggggjie.runtypescript.action.DebugTsAction"
+                use-shortcut-of="RunDashboard.Debug"
+                class="com.github.yanggggjie.runtypescript.action.DebugTsAction">
+            <add-to-group
+                    group-id="ProjectViewPopupMenuRunGroup"
+                    anchor="after"
+                    relative-to-action="com.github.yanggggjie.runtypescript.action.RunTsAction"/>
+            <add-to-group
+                    group-id="EditorPopupMenu.Run"
+                    anchor="after"
+                    relative-to-action="com.github.yanggggjie.runtypescript.action.RunTsAction"/>
+            <add-to-group
+                    group-id="EditorTabPopupMenuEx"
+                    relative-to-action="com.github.yanggggjie.runtypescript.action.RunTsAction"
+                    anchor="after"/>
+        </action>
+
+
+        <!--        <action id="MyPlugin.RunJSFile" class="com.github.yanggggjie.runtypescript.Run" text="Run a.js"-->
+        <!--                description="Run a JavaScript file."-->
+        <!--                icon="AllIcons.Debugger.ThreadRunning">-->
+        <!--            <add-to-group group-id="EditorPopupMenu" anchor="last"/>-->
+        <!--        </action>-->
+        <!--        <action id="MyPlugin.DebugJSFile" class="com.github.yanggggjie.runtypescript.Debug" text="Debug a.js"-->
+        <!--                description="Debug a JavaScript file."-->
+        <!--                icon="AllIcons.Actions.StartDebugger">-->
+        <!--            <add-to-group group-id="EditorPopupMenu" anchor="last"/>-->
+        <!--        </action>-->
+    </actions>
+
 </idea-plugin>
