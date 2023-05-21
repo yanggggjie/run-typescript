@@ -24,6 +24,7 @@ repositories {
 // Dependencies are managed with Gradle version catalog - read more: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
 dependencies {
 //    implementation(libs.annotations)
+    implementation("org.jetbrains:marketplace-zip-signer:0.1.8")
 }
 
 // Set the JVM language level used to build the project. Use Java 11 for 2020.3+, and Java 17 for 2022.2+.
@@ -59,6 +60,21 @@ qodana {
 kover.xmlReport {
     onCheck = true
 }
+
+//note token files
+val publishTokenFile = File(System.getProperty("user.home"), ".gradle/jetbrains_keys/publish_token.txt")
+val publishTokenValue = if (publishTokenFile.exists()) publishTokenFile.readText().trim() else ""
+
+val certificateChainFile = File(System.getProperty("user.home"), ".gradle/jetbrains_keys/chain.crt")
+val certificateChainValue = if (certificateChainFile.exists()) certificateChainFile.readText().trim() else ""
+
+
+val privateKeyFile = File(System.getProperty("user.home"), ".gradle/jetbrains_keys/private.pem")
+val privateKeyValue = if (privateKeyFile.exists()) privateKeyFile.readText().trim() else ""
+
+val passwordFile = File(System.getProperty("user.home"), ".gradle/jetbrains_keys/PEM_pass_phrase.txt")
+val passwordValue = if (passwordFile.exists()) passwordFile.readText().trim() else ""
+//
 
 tasks {
     wrapper {
@@ -107,14 +123,18 @@ tasks {
     }
 
     signPlugin {
-        certificateChain = environment("CERTIFICATE_CHAIN")
-        privateKey = environment("PRIVATE_KEY")
-        password = environment("PRIVATE_KEY_PASSWORD")
+//        certificateChain = environment("CERTIFICATE_CHAIN")
+        certificateChain = certificateChainValue
+//        privateKey = environment("PRIVATE_KEY")
+        privateKey = privateKeyValue
+//        password = environment("PRIVATE_KEY_PASSWORD")
+        password = passwordValue
     }
 
     publishPlugin {
         dependsOn("patchChangelog")
-        token = environment("PUBLISH_TOKEN")
+//        token = environment("PUBLISH_TOKEN")
+        token = publishTokenValue
         // The pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
