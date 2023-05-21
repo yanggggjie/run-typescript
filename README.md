@@ -1,5 +1,5 @@
 # run-typescript
-![Usage](https://github.com/yanggggjie/run-typescript/usage/usage-screen.png)
+![Usage](https://github.com/yanggggjie/run-typescript/blob/main/usage/usage-screen.png)
 
 
 ![Build](https://github.com/yanggggjie/run-typescript/workflows/Build/badge.svg)
