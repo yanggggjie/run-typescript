@@ -1,24 +1,23 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.yanggggjie.runtypescript</id>
-    <name>run-typescript Template</name>
+    <name>RunTypescript</name>
     <vendor>yanggggjie</vendor>
     <depends>com.intellij.modules.platform</depends>
     <depends>JavaScript</depends>
     <depends>NodeJS</depends>
 
-    <!-- template   -->
-    <!--    <resource-bundle>messages.MyBundle</resource-bundle>-->
-    <!--    <extensions defaultExtensionNs="com.intellij">-->
-    <!--        <toolWindow factoryClass="com.github.yanggggjie.runtypescript.toolWindow.MyToolWindowFactory"-->
-    <!--                    id="MyToolWindow"/>-->
-    <!--    </extensions>-->
-    <!--    <applicationListeners>-->
-    <!--        <listener class="com.github.yanggggjie.runtypescript.listeners.MyFrameStateListener"-->
-    <!--                  topic="com.intellij.ide.FrameStateListener"/>-->
-    <!--    </applicationListeners>-->
-    <!-- template   -->
+    <description>
+        <![CDATA[
+      run and debug a typescript file just like a javascript file
+        1.make sure your project can auto compile typescript
+        2.make sure project includes a tsconfig file and set sourceMap be true
+        3.feel free to run and debug a typescript file!
+    ]]>
+    </description>
 
+    <extensions defaultExtensionNs="com.github.yanggggjie">
+    </extensions>
 
     <actions>
         <action
@@ -53,17 +52,6 @@
                     anchor="after"/>
         </action>
 
-
-        <!--        <action id="MyPlugin.RunJSFile" class="com.github.yanggggjie.runtypescript.Run" text="Run a.js"-->
-        <!--                description="Run a JavaScript file."-->
-        <!--                icon="AllIcons.Debugger.ThreadRunning">-->
-        <!--            <add-to-group group-id="EditorPopupMenu" anchor="last"/>-->
-        <!--        </action>-->
-        <!--        <action id="MyPlugin.DebugJSFile" class="com.github.yanggggjie.runtypescript.Debug" text="Debug a.js"-->
-        <!--                description="Debug a JavaScript file."-->
-        <!--                icon="AllIcons.Actions.StartDebugger">-->
-        <!--            <add-to-group group-id="EditorPopupMenu" anchor="last"/>-->
-        <!--        </action>-->
     </actions>
 
 </idea-plugin>
